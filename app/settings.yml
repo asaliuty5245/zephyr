@@ -1,0 +1,53 @@
+network:
+  ip:
+    address: "0.0.0.0" # dhcp: 0.0.0.0, static: otherwise
+    netmask: 24
+    gateway: "0.0.0.0"
+    dns: "8.8.8.8"
+  wifi:
+    mode: 1 # 0: sta, 1: ap, 2: sta+ap
+    ssid: "wireless-dap"
+    password: ""
+    security: 0 # 0:None, 1:PSK, 2:PSK-256, 3:SAE
+    channel: 1
+cmsis-dap:
+  enabled: true
+  serial: 1234567890
+  swd:
+    enabled: true
+  jtag:
+    enabled: true
+  swo:
+    enabled: true
+  uart:
+    enabled: true
+    baudrate: 115200
+    data-bits: 8
+    parity: 0 # 0:None, 1:Odd, 2:Even
+    stop-bits: 1
+    flow-control: 0 # 0:None, 1:RTS/CTS, 2:XON/XOFF
+  msc:
+    enabled: true
+  webusb:
+    enabled: true
+    iLandingPage:
+      autoshow: true
+      url: "https://armmbed.github.io/dapjs/examples/daplink-flash/web.html"
+uart:
+  enabled: true
+  baudrate: 115200
+  data-bits: 8
+  parity: 0 # 0:None, 1:Odd, 2:Even
+  stop-bits: 1
+  flow-control: 0 # 0:None, 1:RTS/CTS, 2:XON/XOFF
+license:
+  software:
+    zephyr: "Apache-2.0"
+    cmsis: "Apache-2.0"
+  user:
+    name: "Your Name"
+    email: ""
+    service: false
+    warning: false
+debug:
+  level: 0 # 0:None, 1:Error, 2:Warning, 3:Info, 4:Debug
