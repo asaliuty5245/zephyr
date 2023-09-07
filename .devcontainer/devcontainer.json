@@ -21,7 +21,8 @@
 				"Gruntfuggly.todo-tree",
 				"redhat.vscode-yaml",
 				"redhat.vscode-xml",
-				"WakaTime.vscode-wakatime"
+				"WakaTime.vscode-wakatime",
+				"ms-vscode.hexeditor"
 			]
 		}
 	}
