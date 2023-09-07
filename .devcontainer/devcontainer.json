@@ -1,0 +1,28 @@
+{
+	"image": "mcr.microsoft.com/devcontainers/universal:2",
+	"features": {
+		"ghcr.io/devcontainers-contrib/features/tmux-apt-get:1": {}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"feilong.ankiview",
+				"ms-vscode.cpptools-extension-pack",
+				"MS-CEINTL.vscode-language-pack-zh-hans",
+				"xaver.clang-format",
+				"trond-snekvik.devicetree",
+				"GitHub.copilot",
+				"nordic-semiconductor.nrf-devicetree",
+				"nordic-semiconductor.nrf-kconfig",
+				"donjayamanne.git-extension-pack",
+				"github.vscode-github-actions",
+				"donjayamanne.python-extension-pack",
+				"mechatroner.rainbow-csv",
+				"Gruntfuggly.todo-tree",
+				"redhat.vscode-yaml",
+				"redhat.vscode-xml",
+				"WakaTime.vscode-wakatime"
+			]
+		}
+	}
+}
