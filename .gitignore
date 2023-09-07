@@ -80,3 +80,6 @@ MaintainersFormat.txt
 Nits.txt
 Pylint.txt
 YAMLLint.txt
+
+# setting files
+flash.bin
