@@ -23,9 +23,13 @@ int alpha_handle_export(int (*cb)(const char *name, const void *value, size_t va
 {
 	printk("export keys under <alpha> handler\n");
 	(void)cb("alpha/angle/1", &angle_val, sizeof(angle_val));
+	printk("angle_val = %d\n", angle_val);
 	(void)cb("alpha/length", &length_val, sizeof(length_val));
+	printk("length_val = %" PRId64 "\n", length_val);
 	(void)cb("alpha/length/1", &length_1_val, sizeof(length_1_val));
+	printk("length_1_val = %d\n", length_1_val);
 	(void)cb("alpha/length/2", &length_2_val, sizeof(length_2_val));
+	printk("length_2_val = %d\n", length_2_val);
 
 	return 0;
 }
@@ -35,6 +39,8 @@ int alpha_handle_set(const char *name, size_t len, settings_read_cb read_cb, voi
 	const char *next;
 	size_t next_len;
 	int rc;
+
+	printk("loading key: <%s>\n", name);
 
 	if (settings_name_steq(name, "angle/1", &next) && !next) {
 		if (len != sizeof(angle_val)) {
@@ -88,7 +94,7 @@ int alpha_handle_commit(void)
 struct settings_handler alph_handler = {.name = "alpha",
 					.h_get = NULL,
 					.h_set = alpha_handle_set,
-					.h_commit = alpha_handle_commit,
+					// .h_commit = alpha_handle_commit,
 					.h_export = alpha_handle_export};
 
 static int user_setting_initial(void)
@@ -132,24 +138,45 @@ static int user_setting_initial(void)
 	}
 
 	printk("subtree <%s> handler registered: OK\n", alph_handler.name);
-	printk("subtree <alpha/beta> has static handler\n");
 
 	return rc;
 }
 
+void alph_inc(void)
+{
+	angle_val++;
+	length_val++;
+	length_1_val++;
+	length_2_val++;
+}
+
+void alph_dump(void)
+{
+	printk("::::angle_val = %d\n", angle_val);
+	printk("::::length_val = %" PRId64 "\n", length_val);
+	printk("::::length_1_val = %d\n", length_1_val);
+	printk("::::length_2_val = %d\n", length_2_val);
+}
+
 int main(void)
 {
-	int32_t val_s32 = 0x55;
+	int rc;
 
 	printf("Hello World! %s\n", CONFIG_BOARD);
 
 	user_setting_initial();
 
-	settings_load();
-
-	int rc = settings_save_one("alpha/beta/voltage", (const void *)&val_s32, sizeof(val_s32));
+	rc = settings_load();
 	if (rc) {
-		printk("FAIL_MSG", rc);
+		printk("settings_load fail: %d\n", rc);
+	}
+
+	alph_inc();
+	alph_dump();
+
+	rc = settings_save();
+	if (rc) {
+		printk("settings_save fail: %d\n", rc);
 	}
 
 	return 0;
